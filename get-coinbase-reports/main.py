@@ -1,16 +1,25 @@
-# This is a sample Python script.
+import http.client
+import os
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from coinbase import jwt_generator
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+key_name = os.environ.get("COINBASE_KEY_NAME")
+key_secret = os.environ.get("COINBASE_KEY_SECRET")
 
 
-# Press the green button in the gutter to run the script.
+def createReport():
+    conn = http.client.HTTPSConnection("api.exchange.coinbase.com")
+    payload = ''
+    headers = {
+        'Content-Type': 'application/json',
+        'cb-access-timestamp': time.time()
+    }
+    conn.request("POST", "/reports", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    print(data.decode("utf-8"))
+def main():
+    createReport()
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
