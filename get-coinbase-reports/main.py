@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import json
+import os
+from coinbase.rest import RESTClient
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+key_name = os.environ.get("COINBASE_KEY_NAME")
+key_secret = os.environ.get("COINBASE_KEY_SECRET")
+portfolio_uuid = os.environ.get("PORTFOLIO_UUID")
+
+def getPortfolioBreakdown():
+    client = RESTClient()
+    breakdown = client.get_portfolio_breakdown(portfolio_uuid)['breakdown']
+    return breakdown
+
+def main():
+    obj = json.dumps(getPortfolioBreakdown(), indent=4)
+    print(obj)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
