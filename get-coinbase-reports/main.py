@@ -4,14 +4,16 @@ from coinbase.rest import RESTClient
 
 key_name = os.environ.get("COINBASE_KEY_NAME")
 key_secret = os.environ.get("COINBASE_KEY_SECRET")
+portfolio_uuid = os.environ.get("PORTFOLIO_UUID")
 
 def getPortfolioBreakdown():
     client = RESTClient()
-    breakdown = client.get_portfolio_breakdown("fe02815f-af68-536c-89f2-74613329224e")
+    breakdown = client.get_portfolio_breakdown(portfolio_uuid)['breakdown']
     return breakdown
 
 def main():
-    print(getPortfolioBreakdown())
+    obj = json.dumps(getPortfolioBreakdown(), indent=4)
+    print(obj)
 
 
 if __name__ == '__main__':
