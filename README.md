@@ -35,5 +35,3 @@ The Lambda function is triggered by an event and executes the `lambda_handler` f
 - [json2html Documentation](https://pypi.org/project/json2html/)
 
 ---
-
-Feel free to adjust the README description according to your specific use case and requirements.
