@@ -28,6 +28,7 @@ jobs:
     - name: Activate virtual environment and install dependencies
       run: |
         source venv/bin/activate
+        cd get-coinbase-reports
         pip install -r requirements.txt
     - name: Zip deployment package
       run: |
