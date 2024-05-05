@@ -3,7 +3,7 @@ name: Python package
 on:
   push:
     branches: 
-      - master
+      - lambdafy-the-code
   pull_request:
     branches: 
       - lambdafy-the-code
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9"]
+        python-version: ["3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,18 +23,21 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Activate virtual environment and install dependencies
       run: |
-        python -m venv lambda_env
-        source lambda_env/bin/activate
         cd get-coinbase-reports
-        pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+        pip show boto3
         deactivate
-    - name: Package Lambda function
+    - name: Zip deployment package
       run: |
-        zip -r lambda_function.zip lambda_env/ lambda_function.py
-#        zip -r lambda_function.zip . -x "venv/*"
+        ls
+        cd get-coinbase-reports/venv/lib/python3.12/site-packages
+        zip -r ../../../../my_deployment_package.zip .
+        cd ../../../../
+        zip my_deployment_package.zip lambda_function.py
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -43,7 +46,8 @@ jobs:
         aws-region: "us-east-1"
     - name: Upload deployment package to S3
       run: |
-        aws s3 cp lambda_function.zip s3://coinbase-report/lambda_function.zip
+        ls get-coinbase-reports
+        aws s3 cp get-coinbase-reports/my_deployment_package.zip s3://coinbase-report/lambda_function.zip
 #    - name: Deploy to AWS
 #      run: |
 #        aws lambda update-function-code --function-name coinbase-brassert-report --zip-file fileb://lambda_function.zip

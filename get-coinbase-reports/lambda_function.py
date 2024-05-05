@@ -109,9 +109,6 @@ def emailReport(report_html):
         print("email sent!")
         return response
 
-def main():
+def lambda_handler(event, context):
     message = getPortfolioBreakdown()
-    emailReport(message)
-
-if __name__ == '__main__':
-    main()
+    return emailReport(message)
