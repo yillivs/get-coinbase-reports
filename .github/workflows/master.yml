@@ -3,10 +3,10 @@ name: Python package
 on:
   push:
     branches: 
-      - master
+      - refactor
   pull_request:
     branches: 
-      - master
+      - refactor
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Activate virtual environment and install dependencies
       run: |
-        cd get-coinbase-reports
+        cd src
         python -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
@@ -34,7 +34,7 @@ jobs:
     - name: Zip deployment package
       run: |
         ls
-        cd get-coinbase-reports/venv/lib/python3.12/site-packages
+        cd src/venv/lib/python3.12/site-packages
         zip -r ../../../../my_deployment_package.zip .
         cd ../../../../
         zip my_deployment_package.zip lambda_function.py
@@ -46,7 +46,7 @@ jobs:
         aws-region: "us-east-1"
     - name: Upload deployment package to S3
       run: |
-        aws s3 cp get-coinbase-reports/my_deployment_package.zip s3://coinbase-report/lambda_function.zip
+        aws s3 cp src/my_deployment_package.zip s3://coinbase-report/lambda_function.zip
 
 
     
