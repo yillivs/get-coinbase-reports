@@ -7,8 +7,6 @@ from coinbase.rest import RESTClient
 import boto3
 from botocore.exceptions import ClientError
 
-key_name = os.environ.get("COINBASE_KEY_NAME")
-key_secret = os.environ.get("COINBASE_KEY_SECRET")
 portfolio_uuid = os.environ.get("PORTFOLIO_UUID")
 recipient_email_list = json.loads(os.environ.get("RECIPIENT_EMAIL_LIST"))
 sender_email_address = os.environ.get("SENDER_EMAIL_ADDRESS")
