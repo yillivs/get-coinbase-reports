@@ -25,34 +25,26 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m venv lambda_env
+        source lambda_env/bin/activate
         cd get-coinbase-reports
-        python -m pip install virtualenv
-        virtualenv venv
-        venv lambda_venv
-        source ./lambda_venv/bin/activate        
+        pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         deactivate
         cd lambda_venv/lib/python3.12/site-packages
     - name: Package Lambda function
       run: |
         zip -r lambda_function.zip . -x "venv/*"
-        
-        
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: "us-east-1"
-
     - name: Deploy to AWS
       run: |
         aws lambda update-function-code --function-name coinbase-brassert-report --zip-file fileb://lambda_function.zip
 
-        
 
+    
+   
