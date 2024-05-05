@@ -30,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd get-coinbase-reports
           python -m pip install virtualenv
           python -m virtualenv venv
           source venv/bin/activate
