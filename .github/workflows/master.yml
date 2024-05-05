@@ -38,7 +38,6 @@ jobs:
         zip -r ../../../../my_deployment_package.zip .
         cd ../../../../
         zip my_deployment_package.zip lambda_function.py
-#        zip -r lambda_function.zip . -x "venv/*"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
