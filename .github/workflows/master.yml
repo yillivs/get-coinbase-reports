@@ -34,7 +34,7 @@ jobs:
     - name: Zip deployment package
       run: |
         ls
-        cd venv/lib/python3.9/site-packages
+        cd get-coinbase-reports/venv/lib/python3.9/site-packages
         zip -r ../../../../my_deployment_package.zip .
         cd ../../../../
         zip my_deployment_package.zip lambda_function.py
