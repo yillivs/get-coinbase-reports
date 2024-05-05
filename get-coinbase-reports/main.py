@@ -29,13 +29,22 @@ def createReport():
 def emailReport(report_html):
     ses_client = boto3.client('ses', region_name='us-east-1')
 
+    message = {
+        'Subject': {'Data': "Test"},
+        'Body': {
+            'Html': {
+                'Data': report_html
+            }
+        }
+    }
+
     try:
         response = ses_client.send_email(
             Source='trickquestionis@gmail.com',
             Destination={
                 'ToAddresses': [recipient_email_list]
             },
-            Message=report_html
+            Message=message
         )
     except ClientError as e:
         print(e)
@@ -44,7 +53,7 @@ def emailReport(report_html):
 
 def main():
     message = createReport()
- #   emailReport(message)
+    emailReport(message)
 
 
 
