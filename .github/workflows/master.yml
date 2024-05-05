@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd get-coinbase-reports
-          pip install virtualenv
+          pip install virtualenv cython
           virtualenv venv
           source venv/bin/activate
           pip install --upgrade pip
