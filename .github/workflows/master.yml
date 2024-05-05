@@ -31,10 +31,10 @@ jobs:
         pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         deactivate
-        cd lambda_venv/lib/python3.9/site-packages
     - name: Package Lambda function
       run: |
-        zip -r lambda_function.zip . -x "venv/*"
+        zip -r lambda_function.zip lambda_env/ your_lambda_function.py
+#        zip -r lambda_function.zip . -x "venv/*"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
