@@ -48,7 +48,7 @@ jobs:
     - name: Upload deployment package to S3
       run: |
         ls get-coinbase-reports
-        aws s3 cp my_deployment_package.zip s3://coinbase-report/lambda_function.zip
+        aws s3 cp get-coinbase-reports/my_deployment_package.zip s3://coinbase-report/lambda_function.zip
 #    - name: Deploy to AWS
 #      run: |
 #        aws lambda update-function-code --function-name coinbase-brassert-report --zip-file fileb://lambda_function.zip
