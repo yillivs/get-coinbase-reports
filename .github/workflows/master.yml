@@ -21,14 +21,19 @@ jobs:
         with:
           python-version: '3.9' 
 
+      - name: Install Cython and build-essential (for Linux)
+        run: |
+          python -m pip install --upgrade pip
+          pip install Cython
+          sudo apt-get update
+          sudo apt-get install build-essential
+
       - name: Install dependencies
         run: |
-          cd get-coinbase-reports
-          pip install virtualenv cython
-          virtualenv venv
+          python -m pip install virtualenv
+          python -m virtualenv venv
           source venv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m pip install -r requirements.txt
           deactivate
           
 
