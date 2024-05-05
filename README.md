@@ -8,7 +8,7 @@ This script generates a report of cryptocurrency portfolio balances and sends it
 - `os`: Python module providing a portable way of using operating system-dependent functionality.
 - `datetime`: Python module for manipulating dates and times.
 - `json2html`: Python library to convert JSON data to HTML tables.
-- `coinbase`: Python library for interacting with the Coinbase API.
+- `coinbase-advanced-py`: Python library for interacting with the Coinbase API.
 - `boto3`: AWS SDK for Python (Boto3) to interact with AWS services.
 - `botocore`: Low-level interface to AWS services.
 
@@ -30,7 +30,7 @@ The Lambda function is triggered by an event and executes the `lambda_handler` f
 
 ## Credits
 
-- [Coinbase Python API](https://github.com/coinbase/coinbase-python)
+- [Coinbase Advanced Python API](https://github.com/coinbase/coinbase-advanced-py)
 - [Boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
 - [json2html Documentation](https://pypi.org/project/json2html/)
 
