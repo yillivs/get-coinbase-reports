@@ -3,10 +3,10 @@ name: Python package
 on:
   push:
     branches: 
-      - master
+      - lambdafy-the-code
   pull_request:
     branches: 
-      - master
+      - lambdafy-the-code
 
 jobs:
   build:
