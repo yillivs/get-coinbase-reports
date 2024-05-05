@@ -47,7 +47,7 @@ jobs:
         aws-region: "us-east-1"
     - name: Upload deployment package to S3
       run: |
-        ls
+        ls get-coinbase-reports
         aws s3 cp my_deployment_package.zip s3://coinbase-report/lambda_function.zip
 #    - name: Deploy to AWS
 #      run: |
