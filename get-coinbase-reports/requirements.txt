@@ -6,6 +6,9 @@
 #
 boto3==1.34.98
     # via -r requirements.in
+botocore==1.34.98
+    # via
+    #   -r requirements.in
     #   boto3
     #   s3transfer
 certifi==2024.2.2
@@ -13,6 +16,8 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
     # via requests
 coinbase==2.1.0
+
+coinbase-advanced-py~=1.2.2
     # via -r requirements.in
 idna==3.7
     # via requests
@@ -24,8 +29,7 @@ json2html==1.3.0
     # via -r requirements.in
 pycryptodome==3.20.0
     # via coinbase
-python-dateutil==2.9.0.post0
-    # via botocore
+
 requests==2.31.0
     # via coinbase
 s3transfer==0.10.1
@@ -34,7 +38,7 @@ six==1.16.0
     # via
     #   coinbase
     #   python-dateutil
-urllib3==2.2.1
+urllib3~=2.2.1
     # via
     #   botocore
     #   requests
