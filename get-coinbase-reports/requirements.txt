@@ -14,3 +14,4 @@ boto3~=1.34.98
 json2html~=1.3.0
 botocore~=1.34.98
 coinbase~=2.1.0
+coinbase.rest~=2.1.0
