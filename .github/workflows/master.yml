@@ -26,10 +26,22 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install virtualenv
-        virtualenv venv
         cd get-coinbase-reports
+        python -m pip install venv lambda_venv
+        source ./lambda_venv/bin/activate        
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        deactivate
+        cd lambda_venv/lib/python3.12/site-packages
     - name: Package Lambda function
       run: |
-        zip -r lambda_function.zip . -x "venv/*"
+        zip -r ../../../../my_deployment_package.zip .
+     #   zip -r lambda_function.zip . -x "venv/*"
+        
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to AWS
+      run: |
+        
+
