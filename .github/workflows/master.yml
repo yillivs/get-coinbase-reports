@@ -1,0 +1,38 @@
+name: Build Lambda Deployment Package
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' 
+
+      - name: Install dependencies
+        run: |
+          cd get-coinbase-reports
+          pip install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          deactivate
+          
+
+      # You can add more steps here if necessary, such as running tests or linting
+
+      - name: Package Lambda function
+        run: |
+          zip -r lambda_function.zip . -x "venv/*"
