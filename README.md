@@ -17,8 +17,10 @@ This script generates a report of cryptocurrency portfolio balances and sends it
 1. Set up AWS Lambda function with appropriate permissions to access SES and other required services.
 2. Configure environment variables:
    - `PORTFOLIO_UUID`: Unique identifier for the cryptocurrency portfolio.
-   - `RECIPIENT_EMAIL_LIST`: JSON string representing a list of recipient email addresses.
+   - `RECIPIENT_EMAIL_LIST`:  string representing a list of recipient email addresses.
    - `SENDER_EMAIL_ADDRESS`: Sender email address for the report email.
+   - `COINBASE_API_KEY`: API key to access Coinbase API's.
+   - `COINBASE_API_SECRET`: API secret to access Coinbase API's.
 3. Trigger the Lambda function either manually or via an event.
 4. The function fetches the portfolio breakdown using the Coinbase API, formats the data into an HTML email body, and sends the report via Amazon SES.
 
