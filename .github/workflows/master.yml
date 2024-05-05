@@ -30,9 +30,14 @@ jobs:
         source venv/bin/activate
         pip install -r requirements.txt
         pip show boto3
+        deactivate
     - name: Zip deployment package
       run: |
-        zip -r lambda_function.zip . -x "venv/*"
+        cd venv/lib/python3.9/site-packages
+        zip -r ../../../../my_deployment_package.zip .
+        cd ../../../../
+        zip my_deployment_package.zip lambda_function.py
+#        zip -r lambda_function.zip . -x "venv/*"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
