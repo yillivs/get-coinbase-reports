@@ -3,7 +3,7 @@ name: Python package
 on:
   push:
     branches: 
-      - lambdafy-the-code
+      - master
   pull_request:
     branches: 
       - lambdafy-the-code
