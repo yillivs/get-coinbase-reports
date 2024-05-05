@@ -31,7 +31,7 @@ jobs:
         pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         deactivate
-        cd lambda_venv/lib/python3.12/site-packages
+        cd lambda_venv/lib/python3.9/site-packages
     - name: Package Lambda function
       run: |
         zip -r lambda_function.zip . -x "venv/*"
