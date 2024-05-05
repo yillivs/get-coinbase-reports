@@ -23,18 +23,15 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Create virtual environment
+      run: python -m venv venv
+    - name: Activate virtual environment and install dependencies
       run: |
-        python -m venv lambda_env
-        source lambda_env/bin/activate
-        cd get-coinbase-reports
-        pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        deactivate
-    - name: Package Lambda function
+        source venv/bin/activate
+        pip install -r requirements.txt
+    - name: Zip deployment package
       run: |
-        zip -r lambda_function.zip lambda_env/ your_lambda_function.py
-#        zip -r lambda_function.zip . -x "venv/*"
+        zip -r lambda_function.zip . -x "venv/*"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
