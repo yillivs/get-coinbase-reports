@@ -41,9 +41,12 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: "us-east-1"
-    - name: Deploy to AWS
+    - name: Upload deployment package to S3
       run: |
-        aws lambda update-function-code --function-name coinbase-brassert-report --zip-file fileb://lambda_function.zip
+        aws s3 cp lambda_function.zip s3://coinbase-report/lambda_function.zip
+#    - name: Deploy to AWS
+#      run: |
+#        aws lambda update-function-code --function-name coinbase-brassert-report --zip-file fileb://lambda_function.zip
 
 
     
