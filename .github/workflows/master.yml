@@ -48,7 +48,7 @@ jobs:
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
-        aws s3 cp src/my_deployment_package.zip $AWS_BUCKET_NAME
+        aws s3 cp src/my_deployment_package.zip "$AWS_BUCKET_NAME"
 
 
     
